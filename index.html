@@ -291,7 +291,8 @@
 
           <div class="form-group" id="guestCountSection" style="display: none;">
             <label>How Many Additional Guests?</label>
-            <input type="number" id="guestCount" min="1" max="10" placeholder="Enter number" oninput="updateGuestNames()">
+            <input type="number" id="guestCount" min="1" max="10" placeholder="Enter number"
+              oninput="updateGuestNames()">
           </div>
 
           <div class="form-group" id="guestNamesSection" style="display: none;">
@@ -354,6 +355,64 @@
       } else {
         section.style.display = 'none';
       }
+    }
+    function submitRSVP() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const attending = document.getElementById('attending').value;
+      const hasGuests = document.getElementById('hasGuests').value;
+      const guestCount = document.getElementById('guestCount').value;
+      const dietary = document.getElementById('dietary').value.trim();
+
+      // Basic validation
+      if (!firstName || !lastName || !email || !attending) {
+        alert('Please fill in your name, email, and whether you can attend.');
+        return;
+      }
+
+      // Email format check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      // Collect guest names if applicable
+      const guestNames = [];
+      if (hasGuests === 'yes' && guestCount) {
+        for (let i = 1; i <= parseInt(guestCount); i++) {
+          const guestInput = document.getElementById(`guestName${i}`);
+          if (guestInput && guestInput.value.trim()) {
+            guestNames.push(guestInput.value.trim());
+          }
+        }
+      }
+
+      // Build RSVP payload
+      const rsvpData = {
+        firstName,
+        lastName,
+        email,
+        attending,
+        guestCount: hasGuests === 'yes' ? parseInt(guestCount) || 0 : 0,
+        guestNames,
+        dietary,
+        submittedAt: new Date().toISOString()
+      };
+
+      console.log('RSVP submitted:', rsvpData);
+
+      // TODO: send to your backend / Google Form / Formspree / Airtable here
+      // Example:
+      // fetch('YOUR_ENDPOINT', { method: 'POST', body: JSON.stringify(rsvpData) });
+
+      // Show success state
+      document.getElementById('rsvpForm').style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+
+      // Scroll the success message into view
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   </script>
 </body>
