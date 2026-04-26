@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brett & Lana — Wedding RSVP</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤︎</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤︎</text></svg>">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Questrial&display=swap"
     rel="stylesheet">
@@ -56,15 +57,14 @@
     <div class="section-inner">
       <p class="section-label">The Details</p>
       <h2 class="section-title">We'd love for you to be there</h2>
-      <p class="prose">Brett and Lana are getting married in Lana's hometown of <strong>Hai Duong, Vietnam</strong>, and
-        we'd love to invite you to attend! We are happy to provide accomodation near the venue for the weekend and transporation from
-        Noi Bai International Airport (HAN) in Hanoi.</p>
+      <p class="prose">Brett and Lana are getting married in Lana's hometown of <strong>Hai Duong, Vietnam</strong>, and we'd love for you to join us! We'll book and pay for <strong>hotel accommodations</strong> near the venue for the weekend, along with your <strong>transportation</strong> from Noi Bai International Airport (HAN) in Hanoi.</p>
       <div class="details-grid">
         <div class="detail-card">
           <div class="detail-icon">✈</div>
           <h3>Arrival</h3>
           <p>Fly into Noi Bai Airport on <strong>Saturday, October 24</strong>. Arrive in the morning if possible.
-            We'll arrange pickup to the hotel where you'll be staying.</p>
+            We'll take care of your <strong>hotel accommodations</strong> and arrange <strong>airport pickup</strong>
+            when you land.</p>
         </div>
         <div class="detail-card">
           <div class="detail-icon">💍</div>
@@ -76,7 +76,7 @@
           <div class="detail-icon">🚢</div>
           <h3>Ha Long Bay</h3>
           <p>After the wedding, on <strong>Sunday afternoon</strong>, we'll head to Ha Long Bay for a boat tour and
-            dinner on the water. We will provide accomodation in Ha Long Bay for the night.</p>
+            dinner on the water. We will provide <strong>hotel accomodation</strong> in Ha Long Bay for the night.</p>
         </div>
       </div>
       <div class="tip-box">
@@ -94,9 +94,10 @@
       <div class="timeline">
         <div class="timeline-item">
           <p class="timeline-date">Saturday, October 24</p>
-          <h4>Arrive in Hanoi</h4>
-          <p>Fly into Noi Bai Airport, ideally in the morning. We'll arrange pickup at the airport and
-            transportation to Hai Duong (~1.5–2 hrs). Settle into the hotel and rest up.</p>
+          <h4>Arrive in Hanoi and transport to Hai Duong</h4>
+          <p>Fly into Noi Bai Airport, ideally in the morning. We'll arrange airport pickup and transportation to Hai
+            Duong (~1.5–2 hrs). <strong>We'll book and pay for your hotel</strong> and drop you off there directly — just settle in
+            and rest up.</p>
         </div>
         <div class="timeline-item">
           <p class="timeline-date">Sunday, October 25 · Morning</p>
@@ -109,7 +110,7 @@
           <p class="timeline-date">Sunday, October 25 · Afternoon</p>
           <h4>Ha Long Bay</h4>
           <p>We leave for Ha Long Bay in the afternoon (~2 hrs from Hai Duong). We'll board a boat to tour the bay, with
-            dinner and some entertainment on the water. Then back to a hotel on the shore of Ha Long Bay for the night,
+            dinner and some entertainment on the water. Then back to a hotel <strong>(that we will book and pay for)</strong> on the shore of Ha Long Bay for the night,
             and have breakfast at the hotel in the morning.</p>
         </div>
         <div class="timeline-item">
@@ -320,109 +321,109 @@
   </section>
 
   <script>
-  function toggleGuestCount() {
-    const hasGuests = document.getElementById('hasGuests').value;
-    const countSection = document.getElementById('guestCountSection');
-    const namesSection = document.getElementById('guestNamesSection');
+    function toggleGuestCount() {
+      const hasGuests = document.getElementById('hasGuests').value;
+      const countSection = document.getElementById('guestCountSection');
+      const namesSection = document.getElementById('guestNamesSection');
 
-    if (hasGuests === 'yes') {
-      countSection.style.display = 'block';
-    } else {
-      countSection.style.display = 'none';
-      namesSection.style.display = 'none';
-      document.getElementById('guestCount').value = '';
-      document.getElementById('guestNamesContainer').innerHTML = '';
-    }
-  }
-
-  function updateGuestNames() {
-    const guestCount = parseInt(document.getElementById('guestCount').value);
-    const section = document.getElementById('guestNamesSection');
-    const container = document.getElementById('guestNamesContainer');
-
-    container.innerHTML = '';
-
-    if (guestCount > 0) {
-      section.style.display = 'block';
-      for (let i = 1; i <= guestCount; i++) {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.id = `guestName${i}`;
-        input.placeholder = `Guest ${i} full name`;
-        input.style.marginBottom = '0.5rem';
-        input.style.width = '100%';
-        container.appendChild(input);
+      if (hasGuests === 'yes') {
+        countSection.style.display = 'block';
+      } else {
+        countSection.style.display = 'none';
+        namesSection.style.display = 'none';
+        document.getElementById('guestCount').value = '';
+        document.getElementById('guestNamesContainer').innerHTML = '';
       }
-    } else {
-      section.style.display = 'none';
-    }
-  }
-
-  async function submitRSVP() {
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const attending = document.getElementById('attending').value;
-    const hasGuests = document.getElementById('hasGuests').value;
-    const guestCount = document.getElementById('guestCount').value;
-    const dietary = document.getElementById('dietary').value.trim();
-
-    if (!firstName || !lastName || !email || !attending) {
-      alert('Please fill in your name, email, and whether you can attend.');
-      return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
+    function updateGuestNames() {
+      const guestCount = parseInt(document.getElementById('guestCount').value);
+      const section = document.getElementById('guestNamesSection');
+      const container = document.getElementById('guestNamesContainer');
+
+      container.innerHTML = '';
+
+      if (guestCount > 0) {
+        section.style.display = 'block';
+        for (let i = 1; i <= guestCount; i++) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.id = `guestName${i}`;
+          input.placeholder = `Guest ${i} full name`;
+          input.style.marginBottom = '0.5rem';
+          input.style.width = '100%';
+          container.appendChild(input);
+        }
+      } else {
+        section.style.display = 'none';
+      }
     }
 
-    const guestNames = [];
-    if (hasGuests === 'yes' && guestCount) {
-      for (let i = 1; i <= parseInt(guestCount); i++) {
-        const guestInput = document.getElementById(`guestName${i}`);
-        if (guestInput && guestInput.value.trim()) {
-          guestNames.push(guestInput.value.trim());
+    async function submitRSVP() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const attending = document.getElementById('attending').value;
+      const hasGuests = document.getElementById('hasGuests').value;
+      const guestCount = document.getElementById('guestCount').value;
+      const dietary = document.getElementById('dietary').value.trim();
+
+      if (!firstName || !lastName || !email || !attending) {
+        alert('Please fill in your name, email, and whether you can attend.');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const guestNames = [];
+      if (hasGuests === 'yes' && guestCount) {
+        for (let i = 1; i <= parseInt(guestCount); i++) {
+          const guestInput = document.getElementById(`guestName${i}`);
+          if (guestInput && guestInput.value.trim()) {
+            guestNames.push(guestInput.value.trim());
+          }
         }
       }
+
+      const rsvpData = {
+        firstName,
+        lastName,
+        email,
+        attending,
+        guestCount: hasGuests === 'yes' ? parseInt(guestCount) || 0 : 0,
+        guestNames,
+        dietary,
+        submittedAt: new Date().toISOString()
+      };
+
+      const btn = document.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbzAeIq84dH8Jkp0W0KhNOCR7ZW2xBdIkKkuE1zcd9TMM78dqs_6o1ExzPBiSVtXtDVe/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(rsvpData)
+        });
+
+        document.getElementById('rsvpForm').style.display = 'none';
+        const successMsg = document.getElementById('successMessage');
+        successMsg.style.display = 'block';
+        successMsg.classList.add('show');
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        console.error('RSVP error:', err);
+        alert('Something went wrong sending your RSVP. Please try again or email us directly.');
+        btn.disabled = false;
+        btn.textContent = 'Send RSVP';
+      }
     }
-
-    const rsvpData = {
-      firstName,
-      lastName,
-      email,
-      attending,
-      guestCount: hasGuests === 'yes' ? parseInt(guestCount) || 0 : 0,
-      guestNames,
-      dietary,
-      submittedAt: new Date().toISOString()
-    };
-
-    const btn = document.querySelector('.submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbzAeIq84dH8Jkp0W0KhNOCR7ZW2xBdIkKkuE1zcd9TMM78dqs_6o1ExzPBiSVtXtDVe/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(rsvpData)
-      });
-
-      document.getElementById('rsvpForm').style.display = 'none';
-      const successMsg = document.getElementById('successMessage');
-      successMsg.style.display = 'block';
-      successMsg.classList.add('show');
-      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } catch (err) {
-      console.error('RSVP error:', err);
-      alert('Something went wrong sending your RSVP. Please try again or email us directly.');
-      btn.disabled = false;
-      btn.textContent = 'Send RSVP';
-    }
-  }
-</script>
+  </script>
 </body>
 
 </html>
